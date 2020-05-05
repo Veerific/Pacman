@@ -12,8 +12,19 @@ namespace Pacman.GameStates
 
         public DeathState()
         {
-            
 
+            deathScreen = new SpriteGameObject("deathscreen");
+            this.Add(deathScreen);
+        }
+        public override void HandleInput(InputHelper inputHelper)
+        {
+            base.HandleInput(inputHelper);
+            if (inputHelper.AnyKeyPressed)
+            {
+              
+                
+                GameEnvironment.GameStateManager.SwitchTo("StartingState");
+            }
         }
 
     }

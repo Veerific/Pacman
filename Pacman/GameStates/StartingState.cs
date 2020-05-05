@@ -14,7 +14,8 @@ namespace Pacman.GameStates
         
         public StartingState()
         {
-            
+      
+             
             startingScreen = new SpriteGameObject("startscreen");
             this.Add(startingScreen);
         }

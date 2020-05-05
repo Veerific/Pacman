@@ -20,7 +20,7 @@ namespace Pacman
             ApplyResolutionSettings();
 
             gameStateManager.AddGameState("StartingState", new StartingState());
-            gameStateManager.AddGameState("DeathState", new DeathScreen());
+            gameStateManager.AddGameState("DeathState", new DeathState());
             gameStateManager.AddGameState("PlayingState", new PlayingState());
             gameStateManager.SwitchTo("StartingState");
             

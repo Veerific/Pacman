@@ -25,6 +25,8 @@ namespace Pacman.GameStates
         
         public override void Reset()
         {
+            children.Clear();
+
             //adding the gameobjectlists into the lists
             ghosts = new GameObjectList();
             this.Add(ghosts);
@@ -42,6 +44,7 @@ namespace Pacman.GameStates
 
             //the ghosts
             ghosts.Add(new Pinky(new Vector2(500, 500)));
+            ghosts.Add(new Clyde(new Vector2(900, 300)));
 
             base.Reset();
             
@@ -109,7 +112,8 @@ namespace Pacman.GameStates
                 //if the ghost touches the player, the player dies and switches to the death screen
                 if (enemy.CollidesWith(player))
                 {
-                    
+                    GameEnvironment.GameStateManager.SwitchTo("DeathState");
+                    this.Reset();
                 }
 
             }
