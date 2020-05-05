@@ -12,6 +12,7 @@ namespace Pacman.Objects
 {
     class Player : RotatingSpriteGameObject
     {
+        
       
 
         public Player(Vector2 position) : base("spr_pacman")
@@ -29,7 +30,7 @@ namespace Pacman.Objects
         public override void HandleInput(InputHelper inputHelper)
         {
             base.HandleInput(inputHelper);
-
+            //movement input for the player
             if (inputHelper.IsKeyDown(Keys.W) || inputHelper.IsKeyDown(Keys.Up))
             {
                 position.Y -= velocity.Y;

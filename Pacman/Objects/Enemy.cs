@@ -11,6 +11,7 @@ namespace Pacman.Objects
 {
     class Enemy : RotatingSpriteGameObject
     {
+        private float speed = 3;
         public Enemy(String assetName) : base(assetName)
         {
 
@@ -21,5 +22,9 @@ namespace Pacman.Objects
             base.Update(gameTime);
         }
 
+        public float GetSpeed()
+        {
+            return speed;
+        }
     }
 }

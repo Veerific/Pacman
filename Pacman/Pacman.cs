@@ -19,8 +19,16 @@ namespace Pacman
             screen = new Point(1000,600);
             ApplyResolutionSettings();
 
+            GameStateManager.AddGameState("StartState", new StartingState());
             gameStateManager.AddGameState("PlayingState", new PlayingState());
-            gameStateManager.SwitchTo("PlayingState");
+            gameStateManager.SwitchTo("StartState");
+            if(gameStateManager.CurrentGameState == gameStateManager.GetGameState("StartState"))
+            {
+                if (inputHelper.AnyKeyPressed)
+                {
+                    gameStateManager.SwitchTo("PlayingState");
+                }
+            }
         }
     }
 }

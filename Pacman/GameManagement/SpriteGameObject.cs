@@ -112,5 +112,34 @@ public class SpriteGameObject : GameObject
         }
         return false;
     }
+
+    public float GetPositionX()
+    {
+        return position.X;
+    }
+    public float GetPositionY()
+    {
+        return position.Y;
+
+    }
+    public float GetVelocityX()
+    {
+        return velocity.X;
+    }
+    public float GetVelocityY()
+    {
+        return velocity.Y;
+    }
+
+    public void SetVelocityY(float speed)
+    {
+        velocity.Y = speed;
+
+    }
+
+    public void SetVelocityX(float speed)
+    {
+        velocity.X = speed;
+    }
 }
 
