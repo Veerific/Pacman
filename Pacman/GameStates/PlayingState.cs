@@ -49,21 +49,17 @@ namespace Pacman.GameStates
 
             foreach(Box box in boxes.Children)
             {
+                //fix box collision
                 if (player.CollidesWith(box))
                 {
-                    if(player.Position.X > box.Position.X - box.Sprite.Width /2)
+                    player.Velocity = -player.Velocity;
+                }
+                if(box == box1)
+                {
+                    if (player.CollidesWith(box))
                     {
-                        player.Position += player.Velocity;
+                        player.Velocity = -player.Velocity;
                     }
-                    if(player.Position.X < box.Position.X + box.Sprite.Width /2)
-                    {
-                        player.Position -= player.Velocity;
-                    }
-                    else
-                    {
-                        player.Position -= player.Velocity;
-                    }
-                    
                 }
                 else
                 {
