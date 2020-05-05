@@ -15,6 +15,7 @@ namespace Pacman.GameStates
         Box box1;
         Box box2;
         Cherry cherry;
+        ScoreText scoreText;
         GameObjectList ghosts;
         
         
@@ -47,9 +48,10 @@ namespace Pacman.GameStates
             ghosts.Add(new Pinky(new Vector2(500, 500)));
             ghosts.Add(new Clyde(new Vector2(950, 300)));
 
-            //food
 
-            this.Add(new ScoreText(new Vector2(500,300)));
+            scoreText = new ScoreText(new Vector2(400, 300));
+            
+            this.Add(scoreText);
 
 
             base.Reset();
@@ -73,60 +75,108 @@ namespace Pacman.GameStates
             if (player.CollidesWith(cherry))
             {
                 cherry.SetHasEaten(true);
-                this.Remove(cherry);
+                scoreText.AddScore(cherry.GetScore());
+                children.Remove(cherry);
             }
 
 
 
-            //the ghost ai 
             foreach (Enemy enemy in ghosts.Children)
             {
-                //if the x is not aligned with the player, it will follow the player's x accordingly
-                if (enemy.GetPositionX() != player.GetPositionX())
+                if (cherry.GetHasEaten())
                 {
-                    if (enemy.GetPositionX() < player.GetPositionX())
-                    {
-                        enemy.SetVelocityX(enemy.GetSpeed());
-                    }
-                    if (enemy.GetPositionX() > player.GetPositionX())
-                    {
-                        enemy.SetVelocityX(-enemy.GetSpeed());
-                    }
-                    if(enemy.GetPositionX() == player.GetPositionX())
-                    {
-                        enemy.SetVelocityX(0);
-                    }
+                    enemy.SetIsEatable(true);
+
                 }
-                //once the x is aligned, it will check the y
-                //if the y is not aligned with the players, it will follow the player's y accordingly
-                if ( enemy.GetPositionY() != player.GetPositionY())
+                switch (enemy.GetIsEatable())
                 {
-                    if (enemy.GetPositionY() < player.GetPositionY())
-                    {
-                        enemy.SetVelocityY(enemy.GetSpeed());
-                    }
-                    if (enemy.GetPositionY() > player.GetPositionY())
-                    {
-                        enemy.SetVelocityY(-enemy.GetSpeed());
-                    }
+                    case false:
+                        //if the x is not aligned with the player, it will follow the player's x accordingly
+                        if (enemy.GetPositionX() != player.GetPositionX())
+                        {
+                            if (enemy.GetPositionX() < player.GetPositionX())
+                            {
+                                enemy.SetVelocityX(enemy.GetSpeed());
+                            }
+                            if (enemy.GetPositionX() > player.GetPositionX())
+                            {
+                                enemy.SetVelocityX(-enemy.GetSpeed());
+                            }
+                            if (enemy.GetPositionX() == player.GetPositionX())
+                            {
+                                enemy.SetVelocityX(0);
+                            }
+                        }
+                        //once the x is aligned, it will check the y
+                        //if the y is not aligned with the players, it will follow the player's y accordingly
+                        if (enemy.GetPositionY() != player.GetPositionY())
+                        {
+                            if (enemy.GetPositionY() < player.GetPositionY())
+                            {
+                                enemy.SetVelocityY(enemy.GetSpeed());
+                            }
+                            if (enemy.GetPositionY() > player.GetPositionY())
+                            {
+                                enemy.SetVelocityY(-enemy.GetSpeed());
+                            }
+                        }
+
+                        //to make sure the ghost doesnt go through the box
+                        if (enemy.CollidesWith(box1) || enemy.CollidesWith(box2))
+                        {
+                            enemy.SetVelocityX(-1);
+                            enemy.SetVelocityY(-1);
+                        }
+                        else
+                        {
+                            enemy.Reset();
+                        }
+                        //if the ghost touches the player, the player dies and switches to the death screen
+                        if (enemy.CollidesWith(player))
+                        {
+                            GameEnvironment.GameStateManager.SwitchTo("DeathState");
+                            Reset();
+                        }
+                        break;
+                    case true:
+                        //if the player picks up the cherry, ghosts will become eatable
+                        //ghosts will run away as a result
+                            if (enemy.GetPositionX() == player.GetPositionX())
+                            {
+                                if (enemy.GetPositionX() < player.GetPositionX())
+                                {
+                                    enemy.SetVelocityX(-enemy.GetSpeed());
+                                }
+                                if (enemy.GetPositionX() > player.GetPositionX())
+                                {
+                                    enemy.SetVelocityX(enemy.GetSpeed());
+                                }
+
+                            }
+                            //if the y is the same, they will try to leave
+                            if (enemy.GetPositionY() == player.GetPositionY())
+                            {
+                                if (enemy.GetPositionY() < player.GetPositionY())
+                                {
+                                    enemy.SetVelocityY(-enemy.GetSpeed());
+                                }
+                                if (enemy.GetPositionY() > player.GetPositionY())
+                                {
+                                    enemy.SetVelocityY(enemy.GetSpeed());
+                                }
+                            }
+                        //if the player eats the ghost, the ghosts die
+                        if (enemy.CollidesWith(player))
+                        {
+
+                            enemy.SetVelocityY(15);
+                           
+                        }
+
+                        
+                        break;
                 }
-                
-                //to make sure the ghost doesnt go through the box
-                if (enemy.CollidesWith(box1) || enemy.CollidesWith(box2))
-                {
-                    enemy.SetVelocityX(-1);
-                    enemy.SetVelocityY(-1);
-                }
-                else
-                {
-                    enemy.Reset();
-                }
-                //if the ghost touches the player, the player dies and switches to the death screen
-                if (enemy.CollidesWith(player))
-                {
-                    GameEnvironment.GameStateManager.SwitchTo("DeathState");
-                    Reset();
-                }
+
 
             }
             

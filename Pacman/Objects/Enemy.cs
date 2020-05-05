@@ -15,14 +15,21 @@ namespace Pacman.Objects
         private bool isEatable;
         public Enemy(String assetName) : base(assetName)
         {
-
+           
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             position += velocity;
- 
+            isEatable = false;
+
+            if (isEatable)
+            {
+                position.Y = MathHelper.Clamp(position.Y, 0 + sprite.Height / 2, 1000);
+            }
+
+
         }
 
         public float GetSpeed()
@@ -37,6 +44,6 @@ namespace Pacman.Objects
         public void SetIsEatable(bool b)
         {
             this.isEatable = b;
-        }
+        }      
     }
 }

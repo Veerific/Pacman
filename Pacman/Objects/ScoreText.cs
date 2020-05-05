@@ -14,12 +14,19 @@ namespace Pacman.Objects
         
         public ScoreText(Vector2 position) : base("ScoreText",1, "")
         {
-            text = "" + score;
             this.position = position;
         }
-        public void AddScore()
+
+        public override void Update(GameTime gameTime)
         {
-            score++;
+            base.Update(gameTime);
+            text = "" + score;
+
+        }
+        public void AddScore(int score)
+        {
+            this.score += score;
+            
         }
     }
 }

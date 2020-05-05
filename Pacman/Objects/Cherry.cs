@@ -12,6 +12,7 @@ namespace Pacman.Objects
     class Cherry : SpriteGameObject
     {
         private bool hasEaten;
+        private const int CHERRY_SCORE = 10;
         public Cherry(Vector2 position) : base("spr_cherry")
         {
             Reset();
@@ -30,6 +31,10 @@ namespace Pacman.Objects
         public void SetHasEaten(bool b)
         {
             this.hasEaten = b;
+        }
+        public int GetScore()
+        {
+            return CHERRY_SCORE;
         }
     }
 }
