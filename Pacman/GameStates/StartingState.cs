@@ -14,8 +14,18 @@ namespace Pacman.GameStates
         
         public StartingState()
         {
-            startingScreen = new SpriteGameObject("startscreen", 0, "", 0);
-            startingScreen.Origin = new Vector2(0, 0);
+            
+            startingScreen = new SpriteGameObject("startscreen");
+            this.Add(startingScreen);
+        }
+
+        public override void HandleInput(InputHelper inputHelper)
+        {
+            base.HandleInput(inputHelper);
+            if (inputHelper.AnyKeyPressed)
+            {
+                GameEnvironment.GameStateManager.SwitchTo("PlayingState");
+            }
         }
     }
 }

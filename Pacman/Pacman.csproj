@@ -58,6 +58,7 @@
     <Compile Include="GameManagement\SpriteGameObject.cs" />
     <Compile Include="GameManagement\SpriteSheet.cs" />
     <Compile Include="GameManagement\TextGameObject.cs" />
+    <Compile Include="GameStates\DeathState.cs" />
     <Compile Include="GameStates\PlayingState.cs" />
     <Compile Include="GameStates\StartingState.cs" />
     <Compile Include="Objects\Box.cs" />

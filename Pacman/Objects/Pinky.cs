@@ -14,16 +14,13 @@ namespace Pacman.Objects
         public Pinky(Vector2 position) : base("spr_pinky")
         {
             this.position = position;
-            Reset();
+       
         }
-        public void Reset()
-        {
-            velocity = new Vector2(5,5);
-        }
+      
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            
+            position += velocity;
         }
 
 

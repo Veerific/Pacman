@@ -61,11 +61,11 @@ namespace Pacman.GameStates
             {
                 player.Reset();
             }
-            
 
-        
+
+
             //the ghost ai 
-            foreach(Enemy enemy in ghosts.Children)
+            foreach (Enemy enemy in ghosts.Children)
             {
                 //if the x is not aligned with the player, it will follow the player's x accordingly
                 if (enemy.GetPositionX() != player.GetPositionX())
@@ -74,13 +74,18 @@ namespace Pacman.GameStates
                     {
                         enemy.SetVelocityX(enemy.GetSpeed());
                     }
-                    if(enemy.GetPositionX() > player.GetPositionX())
+                    if (enemy.GetPositionX() > player.GetPositionX())
                     {
                         enemy.SetVelocityX(-enemy.GetSpeed());
                     }
+                    if(enemy.GetPositionX() == player.GetPositionX())
+                    {
+                        enemy.SetVelocityX(0);
+                    }
                 }
+                //once the x is aligned, it will check the y
                 //if the y is not aligned with the players, it will follow the player's y accordingly
-                if( enemy.GetPositionY() != player.GetPositionY())
+                if ( enemy.GetPositionY() != player.GetPositionY())
                 {
                     if (enemy.GetPositionY() < player.GetPositionY())
                     {
@@ -91,6 +96,7 @@ namespace Pacman.GameStates
                         enemy.SetVelocityY(-enemy.GetSpeed());
                     }
                 }
+                //to make sure the ghost doesnt go through the box
                 if (enemy.CollidesWith(box1) || enemy.CollidesWith(box2))
                 {
                     enemy.SetVelocityX(-1);
@@ -100,17 +106,14 @@ namespace Pacman.GameStates
                 {
                     enemy.Reset();
                 }
+                //if the ghost touches the player, the player dies and switches to the death screen
+                if (enemy.CollidesWith(player))
+                {
+                    
+                }
 
             }
             
-      
-
-            
         }
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            base.Draw(gameTime, spriteBatch);
-        }
-
     }
 }
