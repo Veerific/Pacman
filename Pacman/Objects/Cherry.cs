@@ -11,6 +11,25 @@ namespace Pacman.Objects
 {
     class Cherry : SpriteGameObject
     {
+        private bool hasEaten;
+        public Cherry(Vector2 position) : base("spr_cherry")
+        {
+            Reset();
+            this.position = position;
+        }
+
+        public override void Reset()
+        {
+            base.Reset();
+        }
         
+        public bool GetHasEaten()
+        {
+            return hasEaten;
+        }
+        public void SetHasEaten(bool b)
+        {
+            this.hasEaten = b;
+        }
     }
 }

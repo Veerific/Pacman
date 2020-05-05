@@ -12,6 +12,7 @@ namespace Pacman.Objects
     class Enemy : RotatingSpriteGameObject
     {
         private float speed = 3;
+        private bool isEatable;
         public Enemy(String assetName) : base(assetName)
         {
 
@@ -27,6 +28,15 @@ namespace Pacman.Objects
         public float GetSpeed()
         {
             return speed;
+        }
+
+        public bool GetIsEatable()
+        {
+            return isEatable;
+        }
+        public void SetIsEatable(bool b)
+        {
+            this.isEatable = b;
         }
     }
 }

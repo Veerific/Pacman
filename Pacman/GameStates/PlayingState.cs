@@ -14,8 +14,7 @@ namespace Pacman.GameStates
         Player player;
         Box box1;
         Box box2;
-
-
+        Cherry cherry;
         GameObjectList ghosts;
         
         
@@ -38,7 +37,8 @@ namespace Pacman.GameStates
             box2 = new Box(new Vector2(725, 300));
             this.Add(box1);
             this.Add(box2);
-
+            cherry = new Cherry(new Vector2(250, 550));
+            this.Add(cherry);
             //the player
             player = new Player(new Vector2(500, 300));
             this.Add(player);
@@ -46,6 +46,10 @@ namespace Pacman.GameStates
             //the ghosts
             ghosts.Add(new Pinky(new Vector2(500, 500)));
             ghosts.Add(new Clyde(new Vector2(950, 300)));
+
+            //food
+
+            this.Add(new ScoreText(new Vector2(500,300)));
 
 
             base.Reset();
@@ -65,6 +69,11 @@ namespace Pacman.GameStates
             else
             {
                 player.Reset();
+            }
+            if (player.CollidesWith(cherry))
+            {
+                cherry.SetHasEaten(true);
+                this.Remove(cherry);
             }
 
 
@@ -116,7 +125,7 @@ namespace Pacman.GameStates
                 if (enemy.CollidesWith(player))
                 {
                     GameEnvironment.GameStateManager.SwitchTo("DeathState");
-                    this.Reset();
+                    Reset();
                 }
 
             }
