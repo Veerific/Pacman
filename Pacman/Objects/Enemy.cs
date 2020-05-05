@@ -20,6 +20,8 @@ namespace Pacman.Objects
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            position += velocity;
+ 
         }
 
         public float GetSpeed()

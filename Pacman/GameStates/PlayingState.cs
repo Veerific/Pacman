@@ -15,6 +15,7 @@ namespace Pacman.GameStates
         Box box1;
         Box box2;
 
+
         GameObjectList ghosts;
         
         
@@ -44,7 +45,8 @@ namespace Pacman.GameStates
 
             //the ghosts
             ghosts.Add(new Pinky(new Vector2(500, 500)));
-            ghosts.Add(new Clyde(new Vector2(900, 300)));
+            ghosts.Add(new Clyde(new Vector2(950, 300)));
+
 
             base.Reset();
             
@@ -99,6 +101,7 @@ namespace Pacman.GameStates
                         enemy.SetVelocityY(-enemy.GetSpeed());
                     }
                 }
+                
                 //to make sure the ghost doesnt go through the box
                 if (enemy.CollidesWith(box1) || enemy.CollidesWith(box2))
                 {

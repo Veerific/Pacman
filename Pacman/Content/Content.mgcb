@@ -25,6 +25,13 @@
 /processorParam:TextureFormat=Color
 /build:deathscreen.png
 
+#begin ScoreText.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:ScoreText.spritefont
+
 #begin spr_box.png
 /importer:TextureImporter
 /processor:TextureProcessor

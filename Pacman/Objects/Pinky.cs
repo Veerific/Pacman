@@ -16,13 +16,14 @@ namespace Pacman.Objects
             this.position = position;
             Reset();
         }
-       
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            position += velocity;
+
         }
+
+
 
 
     }

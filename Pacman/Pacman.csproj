@@ -64,10 +64,10 @@
     <Compile Include="Objects\Box.cs" />
     <Compile Include="Objects\Clyde.cs" />
     <Compile Include="Objects\Enemy.cs" />
-    <Compile Include="Objects\Food.cs" />
     <Compile Include="Objects\Player.cs" />
     <Compile Include="Objects\Pinky.cs" />
     <Compile Include="Objects\Cherry.cs" />
+    <Compile Include="Objects\ScoreText.cs" />
     <Compile Include="Pacman.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,9 +11,22 @@ namespace Pacman.Objects
 {
     class Clyde : Enemy
     {
+        private float clydeCooldown = 70;
         public Clyde(Vector2 position) : base("spr_clyde")
         {
             this.position = position;
+            Reset();
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            clydeCooldown--;
+            if(clydeCooldown < 0)
+            {
+                base.Update(gameTime);
+            }
+        }
+
+      
     }
 }
