@@ -11,7 +11,7 @@ namespace Pacman.Objects
 {
     class Clyde : Enemy
     {
-        private float clydeCooldown = 400;
+        private float clydeCooldown = 150;
         public Clyde(Vector2 position) : base("spr_clyde")
         {
             this.position = position;

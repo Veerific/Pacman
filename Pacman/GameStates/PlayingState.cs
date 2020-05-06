@@ -38,7 +38,7 @@ namespace Pacman.GameStates
             box2 = new Box(new Vector2(725, 300));
             this.Add(box1);
             this.Add(box2);
-            cherry = new Cherry(new Vector2(250, 550));
+            cherry = new Cherry(new Vector2(750, 550));
             this.Add(cherry);
             //the player
             player = new Player(new Vector2(500, 300));
@@ -170,6 +170,9 @@ namespace Pacman.GameStates
                         {
 
                             enemy.SetVelocityY(15);
+
+                            GameEnvironment.GameStateManager.SwitchTo("WinState");
+                            Reset();
                            
                         }
 

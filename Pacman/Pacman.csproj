@@ -61,6 +61,7 @@
     <Compile Include="GameStates\DeathState.cs" />
     <Compile Include="GameStates\PlayingState.cs" />
     <Compile Include="GameStates\StartingState.cs" />
+    <Compile Include="GameStates\WinState.cs" />
     <Compile Include="Objects\Box.cs" />
     <Compile Include="Objects\Clyde.cs" />
     <Compile Include="Objects\Enemy.cs" />
