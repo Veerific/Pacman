@@ -52,7 +52,7 @@ namespace Pacman.GameStates
             ghosts.Add(new Clyde(new Vector2(950, 300)));
 
             //scoretext
-            scoreText = new ScoreText(new Vector2(400, 300));
+            scoreText = new ScoreText(new Vector2(490, 300));
             
             this.Add(scoreText);
 
