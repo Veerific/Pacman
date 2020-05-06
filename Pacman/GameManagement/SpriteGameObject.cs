@@ -122,14 +122,6 @@ public class SpriteGameObject : GameObject
         return position.Y;
 
     }
-    public float GetVelocityX()
-    {
-        return velocity.X;
-    }
-    public float GetVelocityY()
-    {
-        return velocity.Y;
-    }
 
     public void SetVelocityY(float speed)
     {

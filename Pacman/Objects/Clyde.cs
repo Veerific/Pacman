@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Pacman.Objects
 {
+    //one of the ghosts, CLyde
     class Clyde : Enemy
     {
         private float clydeCooldown = 150;
@@ -20,7 +21,9 @@ namespace Pacman.Objects
 
         public override void Update(GameTime gameTime)
         {
+            //Clyde has a cooldown. He waits a little bit before he will move
             clydeCooldown--;
+            //once his cooldown is below zero, he will chase the player
             if(clydeCooldown < 0)
             {
                 base.Update(gameTime);

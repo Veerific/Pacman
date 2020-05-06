@@ -11,6 +11,8 @@ namespace Pacman.Objects
 {
     class Pinky : Enemy
     {
+        //Pinky, a child class from Enemy.
+        //Pinky is simple, she just chases pacman
         public Pinky(Vector2 position) : base("spr_pinky")
         {
             this.position = position;

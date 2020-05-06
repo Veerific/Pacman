@@ -9,6 +9,7 @@ namespace Pacman.Objects
 {
     class ScoreText : TextGameObject
     {
+        //scoretext class
 
         private int score;
         
@@ -23,6 +24,7 @@ namespace Pacman.Objects
             text = "" + score;
 
         }
+        //method to add score during a certain event
         public void AddScore(int score)
         {
             this.score += score;

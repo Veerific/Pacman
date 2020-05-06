@@ -9,33 +9,45 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Pacman.Objects
 {
+    //the main enemy class
     class Enemy : RotatingSpriteGameObject
     {
         private float speed = 3;
+        private float runawaySpeed = 7;
+        private int knockback;
         private bool isEatable;
         public Enemy(String assetName) : base(assetName)
         {
-           
+            Reset();
+        }
+        public override void Reset()
+        {
+            base.Reset();
+            isEatable = false;
+            knockback = -1;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             position += velocity;
-            isEatable = false;
-
-            if (isEatable)
-            {
-                position.Y = MathHelper.Clamp(position.Y, 0 + sprite.Height / 2, 1000);
-            }
-
-
+            
+        }
+        public int GetKnockback()
+        {
+            return knockback;
         }
 
+        public float GetRunawaySpeed()
+        {
+            return runawaySpeed;
+        }
         public float GetSpeed()
         {
             return speed;
         }
+
+        //booleans for when they are edible
 
         public bool GetIsEatable()
         {

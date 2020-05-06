@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Pacman.Objects
 {
+    //the cherry, a fruit that the player can pick up
     class Cherry : SpriteGameObject
     {
         private bool hasEaten;
@@ -23,6 +24,7 @@ namespace Pacman.Objects
         {
             base.Reset();
         }
+        
         
         public bool GetHasEaten()
         {

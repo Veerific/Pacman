@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Pacman.GameStates
 {
     class WinState : GameObjectList
-    {
+    {//this is the win state, it shows the winscreen
         private SpriteGameObject winScreen;
         public WinState()
         {
@@ -18,6 +18,7 @@ namespace Pacman.GameStates
         public override void HandleInput(InputHelper inputHelper)
         {
             base.HandleInput(inputHelper);
+            //if any key is pressed, it will go back to the starting screen
             if (inputHelper.AnyKeyPressed)
             {
                 GameEnvironment.GameStateManager.SwitchTo("StartingState");

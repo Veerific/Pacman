@@ -10,11 +10,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Pacman.Objects
 {
+    //the player class
     class Player : RotatingSpriteGameObject
     {
-        
-      
-
+        private int knockback;
         public Player(Vector2 position) : base("spr_pacman")
         {
             this.position = position;
@@ -25,6 +24,7 @@ namespace Pacman.Objects
         {
             base.Reset();
             velocity = new Vector2(5,5);
+            knockback = -15;
         }
 
         public override void HandleInput(InputHelper inputHelper)
@@ -52,7 +52,11 @@ namespace Pacman.Objects
                 Degrees = 180;
                 
             }
-            
+        }
+        //knockback for when the player touches the box
+        public int GetKnockback()
+        {
+            return knockback;
         }
     }
 }

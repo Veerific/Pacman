@@ -81,10 +81,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\deathscreen.png" />
+    <Content Include="Content\spr_box.png" />
     <Content Include="Content\spr_cherry.png" />
+    <Content Include="Content\spr_clyde.png" />
     <Content Include="Content\spr_pacman.png" />
     <Content Include="Content\spr_pellet.png" />
     <Content Include="Content\spr_pinky.png" />
+    <Content Include="Content\startscreen.png" />
+    <Content Include="Content\winscreen.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

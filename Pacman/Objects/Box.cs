@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Pacman.Objects
 {
+    //the box that frames the map
     class Box : SpriteGameObject
     {
         public Box(Vector2 position) : base("spr_box", 0, "", 0)

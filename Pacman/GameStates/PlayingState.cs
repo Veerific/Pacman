@@ -9,8 +9,11 @@ using Pacman.Objects;
 
 namespace Pacman.GameStates
 {
+    //the playing state, the main state of the game
+    //here comes all the gameplay
     class PlayingState : GameObjectList
     {
+        
         Player player;
         Box box1;
         Box box2;
@@ -48,7 +51,7 @@ namespace Pacman.GameStates
             ghosts.Add(new Pinky(new Vector2(500, 500)));
             ghosts.Add(new Clyde(new Vector2(950, 300)));
 
-
+            //scoretext
             scoreText = new ScoreText(new Vector2(400, 300));
             
             this.Add(scoreText);
@@ -65,13 +68,14 @@ namespace Pacman.GameStates
 
             if (player.CollidesWith(box1) || player.CollidesWith(box2))
             {
-                player.SetVelocityX(-15);
-                player.SetVelocityY(-15);
+                player.SetVelocityX(player.GetKnockback());
+                player.SetVelocityY(player.GetKnockback());
             }
             else
             {
                 player.Reset();
             }
+            //when the player eats the cherry, it will disappear
             if (player.CollidesWith(cherry))
             {
                 cherry.SetHasEaten(true);
@@ -83,6 +87,7 @@ namespace Pacman.GameStates
 
             foreach (Enemy enemy in ghosts.Children)
             {
+                //if the cherry is eaten, the ghosts will become edible
                 if (cherry.GetHasEaten())
                 {
                     enemy.SetIsEatable(true);
@@ -90,6 +95,7 @@ namespace Pacman.GameStates
                 }
                 switch (enemy.GetIsEatable())
                 {
+                    //if the cherry has not been eaten yet, the ghosts will eat you
                     case false:
                         //if the x is not aligned with the player, it will follow the player's x accordingly
                         if (enemy.GetPositionX() != player.GetPositionX())
@@ -124,8 +130,8 @@ namespace Pacman.GameStates
                         //to make sure the ghost doesnt go through the box
                         if (enemy.CollidesWith(box1) || enemy.CollidesWith(box2))
                         {
-                            enemy.SetVelocityX(-1);
-                            enemy.SetVelocityY(-1);
+                            enemy.SetVelocityX(enemy.GetKnockback());
+                            enemy.SetVelocityY(enemy.GetKnockback()); ;
                         }
                         else
                         {
@@ -139,17 +145,19 @@ namespace Pacman.GameStates
                         }
                         break;
                     case true:
-                        //if the player picks up the cherry, ghosts will become eatable
+                        
+                        //if the player picks up the cherry, ghosts will become edible
                         //ghosts will run away as a result
+                        //if the x is the same, they will try to run away
                             if (enemy.GetPositionX() == player.GetPositionX())
                             {
                                 if (enemy.GetPositionX() < player.GetPositionX())
                                 {
-                                    enemy.SetVelocityX(-enemy.GetSpeed());
+                                    enemy.SetVelocityX(-enemy.GetRunawaySpeed());
                                 }
                                 if (enemy.GetPositionX() > player.GetPositionX())
                                 {
-                                    enemy.SetVelocityX(enemy.GetSpeed());
+                                    enemy.SetVelocityX(enemy.GetRunawaySpeed());
                                 }
 
                             }
@@ -158,22 +166,19 @@ namespace Pacman.GameStates
                             {
                                 if (enemy.GetPositionY() < player.GetPositionY())
                                 {
-                                    enemy.SetVelocityY(-enemy.GetSpeed());
+                                    enemy.SetVelocityY(-enemy.GetRunawaySpeed());
                                 }
                                 if (enemy.GetPositionY() > player.GetPositionY())
                                 {
-                                    enemy.SetVelocityY(enemy.GetSpeed());
+                                    enemy.SetVelocityY(enemy.GetRunawaySpeed());
                                 }
                             }
                         //if the player eats the ghost, the ghosts die
                         if (enemy.CollidesWith(player))
-                        {
-
-                            enemy.SetVelocityY(15);
-
+                        {//once the player eats a ghost, it will switch to the winstate
                             GameEnvironment.GameStateManager.SwitchTo("WinState");
                             Reset();
-                           
+
                         }
 
                         

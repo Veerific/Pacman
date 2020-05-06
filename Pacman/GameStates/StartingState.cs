@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Pacman.GameStates
 {
     class StartingState : GameObjectList
-    {
+    {//this is the startingstate. this state shows the starting screen
         private SpriteGameObject startingScreen;
         
         public StartingState()
@@ -23,6 +23,7 @@ namespace Pacman.GameStates
         public override void HandleInput(InputHelper inputHelper)
         {
             base.HandleInput(inputHelper);
+            //when any key is pressed, the game will start
             if (inputHelper.AnyKeyPressed)
             {
                 GameEnvironment.GameStateManager.SwitchTo("PlayingState");
